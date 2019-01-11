@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function lock_image() {
+	IMAGE=$1
+	LOCKIMAGE=$(docker inspect --format='{{index .RepoDigests 0}}' $IMAGE)
+	echo $LOCKIMAGE
+}
+
+function lock_dockerfile() {
+	FILE=$1
+	LOCKFILE=$FILE.lock
+
+	while IFS= read -r LINE; do
+		if [[ $LINE =~ ^FROM ]]
+		then
+			IMAGE=$(echo "$LINE" | sed -r 's/^FROM +([^ ]+).*$/\1/')
+			LOCKIMAGE=$(lock_image $IMAGE)
+			echo "$LINE" | sed -r "s|$IMAGE|$LOCKIMAGE|" >>$LOCKFILE
+		else
+			echo "$LINE" >>$LOCKFILE
+		fi
+	done <$FILE
+
+	mv $LOCKFILE $FILE
+
+	echo "Locked $FILE"
+}
+
+if [ $# -ne 1 ]
+then
+	echo "Usage: locker FILE"
+	exit 0
+fi
+
+FILE=$1
+FILEPATH=$(readlink -f $FILE)
+FILENAME=$(basename $FILEPATH)
+
+case $FILENAME in
+	"Dockerfile")
+		lock_dockerfile $FILEPATH
+		;;
+	*)
+		echo "Unknown file: $FILENAME"
+		;;
+esac
