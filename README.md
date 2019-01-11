@@ -28,4 +28,5 @@ locker Dockerfile
 
 * Keep tag when locking using the syntax `<image>:<tag>@<digest>`
 * Recursive syntax to lock all supported files in a directory
+* Unlock flag to revert from digest to tag
 * Support `docker-compose.yml`
