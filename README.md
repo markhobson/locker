@@ -34,7 +34,10 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 
 ## To do
 
+* Use locally built images in tests to avoid having to pull them
+* Ignore images that don't exist locally
 * Keep tag when locking using the syntax `<image>:<tag>@<digest>`
 * Recursive syntax to lock all supported files in a directory
 * Unlock flag to revert from digest to tag
+* Pull flag to pull newer images before locking
 * Support `docker-compose.yml`
