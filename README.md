@@ -30,6 +30,7 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 
 1. [Install Bats](https://github.com/bats-core/bats-core#installation)
 1. Run the tests:
+
 		bats test
 
 ## To do
