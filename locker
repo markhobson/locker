@@ -29,7 +29,7 @@ function lock_dockerfile() {
 if [ $# -ne 1 ]
 then
 	echo "Usage: locker FILE"
-	exit 0
+	exit 1
 fi
 
 FILE=$1
