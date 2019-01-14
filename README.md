@@ -42,3 +42,4 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 * Unlock flag to revert from digest to tag
 * Pull flag to pull newer images before locking
 * Support `docker-compose.yml`
+* Support AWS CloudFormation templates
