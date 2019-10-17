@@ -28,10 +28,9 @@ locker Dockerfile
 
 The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the test suite:
 
-1. [Install Bats](https://github.com/bats-core/bats-core#installation)
-1. Run the tests:
-
-		bats test
+```
+npx bats test
+```
 
 ## To do
 
