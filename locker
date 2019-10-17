@@ -2,8 +2,9 @@
 
 function lock_image() {
 	IMAGE=$1
-	LOCKIMAGE=$(docker inspect --format='{{index .RepoDigests 0}}' $IMAGE)
-	echo $LOCKIMAGE
+	NAME=$(echo $IMAGE | grep '^[^@]\+' -o)
+	DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' $IMAGE | grep '[^@]\+$' -o)
+	echo $NAME@$DIGEST
 }
 
 function lock_dockerfile() {

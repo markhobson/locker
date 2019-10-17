@@ -21,7 +21,7 @@ DOCKERFILE=$BATS_TMPDIR/Dockerfile
   echo "FROM openjdk:8" > $DOCKERFILE
   run $LOCKER $DOCKERFILE
   [ "$status" -eq 0 ]
-  grep -q '^FROM openjdk@sha256:[a-z0-9]\{64\}$' $DOCKERFILE
+  grep -q '^FROM openjdk:8@sha256:[a-z0-9]\{64\}$' $DOCKERFILE
 }
 
 @test "Can lock Dockerfile FROM with AS" {
