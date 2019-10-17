@@ -12,5 +12,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Pull test images
+      run: |
+        docker pull openjdk
+        docker pull oracle/openjdk
+        docker pull openjdk:8
     - name: Run tests
       run: npx bats test
