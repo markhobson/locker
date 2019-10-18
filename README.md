@@ -24,6 +24,12 @@ To lock image references in a `Dockerfile`:
 locker Dockerfile
 ```
 
+To unlock image references in a `Dockerfile`:
+
+```bash
+locker --unlock Dockerfile
+```
+
 ## Running tests
 
 The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the test suite:
@@ -44,7 +50,6 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 * Ignore images that don't exist locally
 * Discard digest to allow relocking files
 * Recursive syntax to lock all supported files in a directory
-* Unlock flag to revert from digest to tag
 * Pull flag to pull newer images before locking
 * Support `docker-compose.yml`
 * Support AWS CloudFormation templates
