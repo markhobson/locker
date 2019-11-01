@@ -34,7 +34,7 @@ locker --unlock Dockerfile
 
 The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the test suite:
 
-1. Pull the used test images:
+1. Pull the images used by the tests:
 
     ```
     docker pull openjdk
