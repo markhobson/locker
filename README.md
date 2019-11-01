@@ -5,7 +5,7 @@ Locks Docker image references by digest.
 Docker images are typically specified by their name and tag in `Dockerfile`s. Unfortunately tags are mutable which can cause non-deterministic behaviour at a later date. To avoid this, [digests](https://docs.docker.com/engine/reference/commandline/pull/#pull-an-image-by-digest-immutable-identifier) can be used to lock images to an immutable version.
 
 For example, the image `openjdk:8` can be locked down to a specific version using
-`openjdk@sha256:d2e5ce9a87c571481197229f618d573d183c6eca1fe3a90ab668ca1d625f0ff9`
+`openjdk:8@sha256:d2e5ce9a87c571481197229f618d573d183c6eca1fe3a90ab668ca1d625f0ff9`
 
 ## Installation
 
@@ -22,6 +22,12 @@ To lock image references in a `Dockerfile`:
 
 ```bash
 locker Dockerfile
+```
+
+To unlock image references in a `Dockerfile`:
+
+```bash
+locker --unlock Dockerfile
 ```
 
 ## Running tests
@@ -44,7 +50,6 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 * Ignore images that don't exist locally
 * Discard digest to allow relocking files
 * Recursive syntax to lock all supported files in a directory
-* Unlock flag to revert from digest to tag
 * Pull flag to pull newer images before locking
 * Support `docker-compose.yml`
 * Support AWS CloudFormation templates
