@@ -46,6 +46,22 @@ function process_dockerfile() {
 	echo "Updated $FILE"
 }
 
+function process_file() {
+	OPERATION=$1
+	FILE=$2
+	FILEPATH=$(readlink -f $FILE)
+	FILENAME=$(basename $FILEPATH)
+
+	case $FILENAME in
+		"Dockerfile")
+			process_dockerfile $OPERATION $FILEPATH
+			;;
+		*)
+			echo "Unknown file: $FILENAME"
+			;;
+	esac	
+}
+
 if [ $# -lt 1 ] || [ $# -gt 2 ]
 then
 	echo "Usage: locker [-u | --unlock] FILE"
@@ -61,14 +77,4 @@ else
 fi
 
 FILE=$1
-FILEPATH=$(readlink -f $FILE)
-FILENAME=$(basename $FILEPATH)
-
-case $FILENAME in
-	"Dockerfile")
-		process_dockerfile $OPTION $FILEPATH
-		;;
-	*)
-		echo "Unknown file: $FILENAME"
-		;;
-esac
+process_file $OPTION $FILE
