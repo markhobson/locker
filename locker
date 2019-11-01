@@ -61,7 +61,7 @@ function process_file() {
 			echo "$VERB $FILEPATH"
 			;;
 		*)
-			echo "Unknown file: $FILENAME"
+			echo "Unknown file: $FILEPATH"
 			;;
 	esac	
 }
