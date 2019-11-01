@@ -1,15 +1,27 @@
 #!/bin/bash
 
-function lock_image() {
+function get_image_name() {
 	IMAGE=$1
 	NAME=$(echo $IMAGE | grep '^[^@]\+' -o)
+	echo $NAME
+}
+
+function get_image_digest() {
+	IMAGE=$1
 	DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' $IMAGE | grep '[^@]\+$' -o)
+	echo $DIGEST
+}
+
+function lock_image() {
+	IMAGE=$1
+	NAME=$(get_image_name $IMAGE)
+	DIGEST=$(get_image_digest $IMAGE)
 	echo $NAME@$DIGEST
 }
 
 function unlock_image() {
 	IMAGE=$1
-	NAME=$(echo $IMAGE | grep '^[^@]\+' -o)
+	NAME=$(get_image_name $IMAGE)
 	echo $NAME
 }
 
