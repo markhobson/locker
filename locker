@@ -30,6 +30,8 @@ function update_dockerfile() {
 	done <$FILE
 
 	mv $LOCKFILE $FILE
+
+	echo "Updated $FILE"
 }
 
 if [ $# -lt 1 ] || [ $# -gt 2 ]
@@ -53,7 +55,6 @@ FILENAME=$(basename $FILEPATH)
 case $FILENAME in
 	"Dockerfile")
 		update_dockerfile $OPTION $FILEPATH
-		echo "Updated $FILE"
 		;;
 	*)
 		echo "Unknown file: $FILENAME"
