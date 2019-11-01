@@ -70,11 +70,11 @@ fi
 
 if [ $1 == "--unlock" ] || [ $1 == "-u" ]
 then
-	OPTION="unlock_image"
+	OPERATION="unlock_image"
 	shift
 else
-	OPTION="lock_image"
+	OPERATION="lock_image"
 fi
 
 FILE=$1
-process_file $OPTION $FILE
+process_file $OPERATION $FILE
