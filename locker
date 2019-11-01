@@ -46,19 +46,19 @@ function process_dockerfile() {
 	done <$FILE
 
 	mv $LOCKFILE $FILE
-
-	echo "Updated $FILE"
 }
 
 function process_file() {
 	OPERATION=$1
-	FILE=$2
+	VERB=$2
+	FILE=$3
 	FILEPATH=$(readlink -f $FILE)
 	FILENAME=$(basename $FILEPATH)
 
 	case $FILENAME in
 		"Dockerfile")
-			process_dockerfile $OPERATION $FILEPATH
+			process_dockerfile $OPERATION $FILEPATH			
+			echo "$VERB $FILEPATH"
 			;;
 		*)
 			echo "Unknown file: $FILENAME"
@@ -75,10 +75,12 @@ fi
 if [ $1 == "--unlock" ] || [ $1 == "-u" ]
 then
 	OPERATION="unlock_image"
+	VERB="Unlocked"
 	shift
 else
 	OPERATION="lock_image"
+	VERB="Locked"
 fi
 
 FILE=$1
-process_file $OPERATION $FILE
+process_file $OPERATION $VERB $FILE
