@@ -57,3 +57,5 @@ The test suite uses [Bats](https://github.com/bats-core/bats-core). To run the t
 * Pull flag to pull newer images before locking
 * Support `docker-compose.yml`
 * Support AWS CloudFormation templates
+
+![CI](https://github.com/markhobson/locker/workflows/CI/badge.svg)
